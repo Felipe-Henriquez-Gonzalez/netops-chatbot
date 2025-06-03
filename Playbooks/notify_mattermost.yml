@@ -7,20 +7,15 @@
     - name: Send notification message via Mattermost
       delegate_to: localhost
       community.general.mattermost:
-       url: http://podman-host:8065
+       url: http://rhel02.lab.local:8065
        api_key: "{{ MATTERMOST_API_TOKEN }}"
        attachments:
-         - text: "!!!!!! ALERT !!!!!!"
+         - text: "!!!!!! VLAN INFO !!!!!!"
            color: '#ff00dd'
-           title: BGP ERROR
+           title: Vlan info
            fields:
-            - title: Issue Detected
-              value: "BGP Session: {{ bgp_state }}"
+            - title: Lista de vlans cisco
+              value: "Listado de vlans: {{ vlan-info }}"
               short: true
-            - title: Potential Problem
-              value: "Problematic node/path: {{ bgp_prob_neighbor }}"
-              short: true
-            - title: Message
-              value: "Event detected issue, human intervention is required, Dave"
-              short: true
+            
 
