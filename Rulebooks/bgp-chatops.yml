@@ -7,8 +7,8 @@
         port: 5000
   rules:
     - name: Look for a webhook event to remediate BGP
-      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "remediate-bgp"
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "listar-vlans"
       action:
-        run_workflow_template:
-          name: "BGP Workflow"
+        run_job_template:
+          name: "get-vlans"
           organization: "Default"
