@@ -18,3 +18,22 @@
         run_workflow_template:
           name: "WFciscoConfig"
           organization: "Default"
+    - name: Escuchar crea vlan 10
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "crea-vlan-10"
+      action:
+        run_workflow_template:
+          name: "WF-crea-vlan-10"
+          organization: "Default"
+    - name: Escuchar crea vlan 20
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "crea-vlan-20"
+      action:
+        run_workflow_template:
+          name: "WF-crea-vlan-20"
+          organization: "Default"
+    - name: Escuchar crea vlan 30
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "crea-vlan-30"
+      action:
+        run_workflow_template:
+          name: "WF-crea-vlan-30"
+          organization: "Default"
+
