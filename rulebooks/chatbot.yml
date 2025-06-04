@@ -9,6 +9,6 @@
     - name: Escuchar evento de listar vlans
       condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "listar-vlans"
       action:
-        run_job_template:
-          name: "get-vlans"
+        run_workflow_template:
+          name: "WFchatops"
           organization: "Default"
