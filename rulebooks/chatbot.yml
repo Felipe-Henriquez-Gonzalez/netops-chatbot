@@ -12,3 +12,9 @@
         run_workflow_template:
           name: "WFchatops"
           organization: "Default"
+    - name: Escuchar evento de shrun
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "shrun"
+      action:
+        run_workflow_template:
+          name: "WFciscoConfig"
+          organization: "Default"
