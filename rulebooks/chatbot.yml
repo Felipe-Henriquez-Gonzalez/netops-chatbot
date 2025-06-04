@@ -1,0 +1,14 @@
+---
+- name: Listen for Mattermost events on a webhook
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+  rules:
+    - name: Escuchar evento de listar vlans
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "listar-vlans"
+      action:
+        run_job_template:
+          name: "get-vlans"
+          organization: "Default"
