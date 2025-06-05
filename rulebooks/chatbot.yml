@@ -42,4 +42,10 @@
         run_workflow_template:
           name: "WFvlanbrief"
           organization: "Default"
+    - name: Escuchar mostrar meraki
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "meraki"
+      action:
+        run_workflow_template:
+          name: "WFvlanbrief"
+          organization: "Default"
 
