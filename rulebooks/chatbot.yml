@@ -46,6 +46,6 @@
       condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "meraki"
       action:
         run_workflow_template:
-          name: "WFvlanbrief"
+          name: "wf-listarmeraki"
           organization: "Default"
 
