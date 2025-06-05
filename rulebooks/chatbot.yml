@@ -36,4 +36,10 @@
         run_workflow_template:
           name: "WF-crea-vlan-30"
           organization: "Default"
+    - name: Escuchar show vlan brief
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "vlan-brief"
+      action:
+        run_workflow_template:
+          name: "WFvlanbrief"
+          organization: "Default"
 
