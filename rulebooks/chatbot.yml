@@ -48,4 +48,9 @@
         run_workflow_template:
           name: "wf-listarmeraki"
           organization: "Default"
-
+    - name: Escuchar listar interfaces
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "listar-interfaces"
+      action:
+        run_workflow_template:
+          name: "WFgetinterfaces"
+          organization: "Default"
