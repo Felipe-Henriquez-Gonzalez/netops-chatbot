@@ -54,3 +54,9 @@
         run_workflow_template:
           name: "WFgetinterfaces"
           organization: "Default"
+    - name: CPU Saturation 
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "cpu-saturation"
+      action:
+        run_job_template:
+          name: "CPU-solve"
+          organization: "Default"
