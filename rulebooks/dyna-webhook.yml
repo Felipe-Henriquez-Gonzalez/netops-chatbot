@@ -1,5 +1,5 @@
 ---
-- name: Listen for Mattermost events on a webhook
+- name: Listen for dynatrace events on a webhook
   hosts: all
   sources:
     - ansible.eda.webhook:
