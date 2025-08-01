@@ -3,7 +3,7 @@
   hosts: all
   sources:
     - dynatrace.event_driven_ansible.dt_esa_api:
-        dt_api_host: "https://ywl11560.apps.dynatrace.com/"
+        dt_api_host: "{{ _dyna_api }}"
         dt_api_token: "{{ dyna_token }}"
         delay: 60 # Default is 60 seconds, i.e. the plugin polls problems every 60 seconds
 #        proxy: "http://my-proxy:3128" # Proxy through which to access host. (default is none)
