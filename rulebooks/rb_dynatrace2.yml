@@ -15,11 +15,11 @@
         run_job_template:
           name: "dyna-template"
           organization: "Default"
-    - name: Problem payload Dynatrace for App Failure rate increase issue
-      condition: event.title is match("Failure rate increase")
+    - name: Problem payload Dynatrace for web failure
+      condition: event.title is match("httpd is in undesirable (inactive) state")
       action:
         run_job_template:
-          name: "dyna-template1"
+          name: "levanta httpd"
           organization: "Default"
     - name: Update comments in Dynatrace
       condition: 
