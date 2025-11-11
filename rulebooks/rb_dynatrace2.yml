@@ -9,18 +9,31 @@
 #        proxy: "http://my-proxy:3128" # Proxy through which to access host. (default is none)
 
   rules:
+   - name: Remediar cuando Dynatrace reporte httpd en estado OPEN/AVAILABILITY
+    condition: >
+      (event.payload.status is defined and event.payload.status == "OPEN")
+      and (event.payload.severityLevel is defined and event.payload.severityLevel == "AVAILABILITY")
+      and (
+           (event.payload.title is defined and (event.payload.title | lower) is search("httpd"))
+           or
+           (
+             event.payload.impactedEntities is defined
+             and event.payload.impactedEntities|length > 0
+             and (event.payload.impactedEntities[0].name | lower) == "httpd"
+           )
+      )
+    action:
+      run_job_template:
+        name: "levanta httpd"
+        organization: "Default"
+        
     - name: Problem payload Dynatrace for CPU issue
       condition: event.title is match("CPU saturation")
       action:
         run_job_template:
           name: "dyna-template"
           organization: "Default"
-    - name: Problem payload Dynatrace for web failure
-      condition: event.title is match("httpd is in undesirable (inactive) state")
-      action:
-        run_job_template:
-          name: "levanta httpd"
-          organization: "Default"
+   
     - name: Update comments in Dynatrace
       condition: 
         all: 
