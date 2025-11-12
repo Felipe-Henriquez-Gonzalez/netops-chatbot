@@ -13,8 +13,8 @@
       condition: event.title == "httpd is in undesirable (inactive) state"
       action:
         run_job_template:
-        name: "levanta httpd"
-        organization: "Default"
+          name: "levanta httpd"
+          organization: "Default"
         
     - name: Problem payload Dynatrace for CPU issue
       condition: event.title is match("CPU saturation")
