@@ -1,33 +1,34 @@
 ---
 - name: Listen for events on a webhook
   hosts: all
+
   sources:
-    - dynatrace.event_driven_ansible.dt_esa_api:
+    - name: dynatrace_events
+      dynatrace.event_driven_ansible.dt_esa_api:
         dt_api_host: "{{ _dyna_api }}"
         dt_api_token: "{{ dyna_token }}"
-        delay: 60 # Default is 60 seconds, i.e. the plugin polls problems every 60 seconds
-#        proxy: "http://my-proxy:3128" # Proxy through which to access host. (default is none)
+        delay: 60
+        # proxy: "http://my-proxy:3128"
 
   rules:
+
     - name: Detectar servicio httpd inactivo
-      condition: event.title == "httpd is in undesirable (inactive) state"
+      condition: event.title is match("httpd is in undesirable")
       action:
         run_job_template:
           name: "levanta httpd"
           organization: "Default"
-        
+
     - name: Problem payload Dynatrace for CPU issue
       condition: event.title is match("CPU saturation")
       action:
         run_job_template:
           name: "dyna-template"
           organization: "Default"
-   
-#    - name: Update comments in Dynatrace
-#      condition: 
-#        all: 
-#          - event.status == "OPEN"
-#      action:
-#        run_job_template:
-#          name: "dyna-template2"
-#          organization: "Default"
+
+    - name: Update comments in Dynatrace
+      condition: event.status == "OPEN"
+      action:
+        run_job_template:
+          name: "dyna-template2"
+          organization: "Default"
